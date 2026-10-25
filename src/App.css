@@ -1,0 +1,37 @@
+*{
+  background-color: white;
+  color: black
+}
+.surah-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px 4px;
+
+  padding: 12px 28px;
+  margin: 0;
+  list-style: none;
+  direction: rtl;
+}
+
+.surah-item {
+  min-width: 0;
+}
+
+.surah-card {
+  width: 100%;
+  min-height: 54px;
+  padding: 12px 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fff;
+  border: 1px solid #d9dfe5;
+  border-radius: 9px;
+  box-shadow: 0 7px 12px rgba(0, 0, 0, 0.09);
+
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
