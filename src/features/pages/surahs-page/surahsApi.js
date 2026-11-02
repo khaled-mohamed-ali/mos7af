@@ -5,12 +5,12 @@ export const surahsApi = createApi({
   reducerPath: "surahsApi",
 
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://ummahapi.com/api/quran/surahs",
+    baseUrl: "https://ummahapi.com/api/quran",
   }),
 
   endpoints: (builder) => ({
     getSurahs: builder.query({
-      query: () => "surah",
+      query: () => "/surahs",
       transformResponse: (response) => response.data,
     }),
   }),
