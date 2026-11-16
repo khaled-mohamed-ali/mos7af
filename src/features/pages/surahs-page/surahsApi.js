@@ -13,7 +13,12 @@ export const surahsApi = createApi({
       query: () => "/surahs",
       transformResponse: (response) => response.data,
     }),
+    getOneSurah: builder.query({
+      query: (surahNumber) => `/surah/${surahNumber}`,
+      transformResponse: (response) => response.data,
+      
+    }),
   }),
 });
 
-export const { useGetSurahsQuery } = surahsApi;
+export const { useGetSurahsQuery, useGetOneSurahQuery } = surahsApi;

@@ -1,38 +1,37 @@
 import React from 'react'
 import { useLocation } from 'react-router';
+import { useGetOneSurahQuery } from '../../pages/surahs-page/surahsApi';
 
 function SurahDetail() {
 
-      const location = useLocation();
-      const surah = location.state;
+    const location = useLocation();
+    const surah = location.state;
+    const { oneSurah } = useGetOneSurahQuery(surah?.number)
 
-      setTimeout(() => {
-        console.log("SurahDetail surah:", surah);
-      }, 3000);
-//   return (
-//     <div>{surah?.name_arabic}</div>
-//   )
 
+    setTimeout(() => {
+        console.log("oneSurah", oneSurah)
+    }, 1000);
 
 
 
-return (
-  <section className="surah-reader" dir="rtl">
-    <div className="surah-content">
-      
-          <span className="ayah" key={surah.number}>
-            {surah.name_arabic}
-            <span className="ayah-number">
-              {surah.number}
-            </span>
-            {" "}
-          </span>
-    
-    </div>
 
-    <hr className="surah-divider" />
-  </section>
-);
+    return (
+        <section className="surah-reader" dir="rtl">
+            <div className="surah-content">
+                {oneSurah.name_arabic}
+                <span className="ayah" key={surah.number}>
+                    <span className="ayah-number">
+                        {surah.number}
+                    </span>
+                    {" "}
+                </span>
+
+            </div>
+
+            <hr className="surah-divider" />
+        </section>
+    );
 }
 
 
