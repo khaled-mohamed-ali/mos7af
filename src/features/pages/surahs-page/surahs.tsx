@@ -8,8 +8,6 @@ function Surahs(): React.JSX.Element {
   const { data, isLoading, isError } = useGetSurahsQuery();
   const navigate = useNavigate();
 
-  
-
   if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-[300px]">
@@ -40,22 +38,17 @@ function Surahs(): React.JSX.Element {
             ? arabicName
             : `سورة ${arabicName}`;
 
-
           return (
-
             <button
+              key={surah?.number}
               onClick={() =>
                 navigate("/SurahDetail", {
                   state: surah,
                 })
               }
             >
-              <SingleSurah  displayName={displayName} />
+              <SingleSurah displayName={displayName} surah={undefined} />
             </button>
-
-            // <NavLink key={surah.number} to="/SurahDetail" state={{ displayName }}>
-            //   >
-            // </NavLink>
           );
         })}
       </div>

@@ -13,10 +13,9 @@ export const surahsApi = createApi({
       query: () => "/surahs",
       transformResponse: (response) => response.data,
     }),
-    getOneSurah: builder.query({
+  getOneSurah: builder.query({
       query: (surahNumber) => `/surah/${surahNumber}`,
       transformResponse: (response) => response.data,
-      
     }),
   }),
 });
