@@ -11,7 +11,7 @@ function SurahDetail() {
 
   useEffect(() => {
     if (data) {
-      console.log("oneSsurah", data.audio[0]?.surah_audio);
+      console.log("oneSsusdasdsarsah", data);
     }
   });
 
@@ -30,8 +30,7 @@ function SurahDetail() {
         })}
       </div>
       <hr className="surah-divider" />
-
-      <QuranAudioPlayer audioSrc={data?.audio[0]?.surah_audio} surahName={""} />
+      <QuranAudioPlayer audioSrc={data?.audio[0]?.surah_audio} audioData={data} surahName={data?.surah.name_arabic} />
     </section>
   );
 }

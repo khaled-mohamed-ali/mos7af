@@ -4,13 +4,13 @@ import "./audioPlayer.css";
 interface QuranAudioPlayerProps {
   audioSrc: string;
   surahName: string;
-  reciterName?: string;
+  audioData: any;
 }
 
 export const QuranAudioPlayer: React.FC<QuranAudioPlayerProps> = ({
   audioSrc,
   surahName,
-  reciterName = "مشاري راشد العفاسي",
+  audioData
 }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -19,6 +19,7 @@ export const QuranAudioPlayer: React.FC<QuranAudioPlayerProps> = ({
 
   useEffect(() => {
     // Reset player when audioSrc changes
+    console.log(audioData, surahName, audioSrc);
     setIsPlaying(false);
     setCurrentTime(0);
   }, [audioSrc]);
@@ -82,7 +83,7 @@ export const QuranAudioPlayer: React.FC<QuranAudioPlayerProps> = ({
       {/* Reciter & Surah Info */}
       <div className="player-info">
         <span className="player-surah">{surahName}</span>
-        <span className="player-reciter">القارئ: {reciterName}</span>
+        <span className="player-reciter">القارئ: {audioData?.audio.map((e: any) => <div key={e.reciter}>{e.reciter}</div>)}</span>
       </div>
 
       {/* Main Controls */}
