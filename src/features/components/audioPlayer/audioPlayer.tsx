@@ -16,13 +16,13 @@ export const QuranAudioPlayer: React.FC<QuranAudioPlayerProps> = ({
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-
+  const [selectedReciter, setSelectedReciter] = useState("");
+ 
   useEffect(() => {
     // Reset player when audioSrc changes
-    console.log(audioData, surahName, audioSrc);
     setIsPlaying(false);
     setCurrentTime(0);
-  }, [audioSrc]);
+  }, [audioSrc, selectedReciter]);
 
   const togglePlay = () => {
     if (!audioRef.current) return;
@@ -70,11 +70,13 @@ export const QuranAudioPlayer: React.FC<QuranAudioPlayerProps> = ({
     return `${mins < 10 ? "0" : ""}${mins}:${secs < 10 ? "0" : ""}${secs}`;
   };
 
+  // let selectedReciter = audioData?.filter(()))
+
   return (
-    <div className="quran-audio-player" dir="rtl" lang="ar">
+    <div className="quran-audio-player" dir="ltr" lang="ar">
       <audio
         ref={audioRef}
-        src={audioSrc}
+        src={selectedReciter ? audioData?.audio.find((e: any) => e.reciter === selectedReciter)?.surah_audio : audioSrc}
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
         onEnded={() => setIsPlaying(false)}
@@ -83,19 +85,36 @@ export const QuranAudioPlayer: React.FC<QuranAudioPlayerProps> = ({
       {/* Reciter & Surah Info */}
       <div className="player-info">
         <span className="player-surah">{surahName}</span>
-        <span className="player-reciter">القارئ: {audioData?.audio.map((e: any) => <div key={e.reciter}>{e.reciter}</div>)}</span>
+
+        <span className="player-reciter">
+          <select
+            className="reciter-select"
+            onChange={(e) => setSelectedReciter(e.target.value)}
+          >
+            {audioData?.audio.map((e: any) => (
+              <option key={e.reciter} value={e.reciter}>
+                {e.reciter}
+              </option>
+            ))}
+          </select>
+         &nbsp;&nbsp;: أختر القارئ
+        </span>
+
+
       </div>
 
       {/* Main Controls */}
       <div className="player-controls">
         {/* Skip Forward 10s (Left in RTL) */}
-        <button
+      
+
+         <button
           className="control-btn secondary-btn"
-          onClick={() => skipTime(10)}
-          title="تقديم 10 ثوان"
+          onClick={() => skipTime(-10)}
+          title="تأخير 10 ثوان"
         >
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-            <path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z" />
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M11.5 12l8.5 6V6l-8.5 6zm-9 0l8.5 6V6l-8.5 6z" />
           </svg>
         </button>
 
@@ -110,7 +129,7 @@ export const QuranAudioPlayer: React.FC<QuranAudioPlayerProps> = ({
               <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
             </svg>
 
-            
+
           ) : (
             <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
               <path d="M8 5v14l11-7z" />
@@ -119,15 +138,13 @@ export const QuranAudioPlayer: React.FC<QuranAudioPlayerProps> = ({
         </button>
 
         {/* Rewind 10s (Right in RTL) */}
-        <button
+         <button
           className="control-btn secondary-btn"
-          onClick={() => skipTime(-10)}
-          title="تأخير 10 ثوان"
+          onClick={() => skipTime(10)}
+          title="تقديم 10 ثوان"
         >
-        
-
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-            <path d="M11.5 12l8.5 6V6l-8.5 6zm-9 0l8.5 6V6l-8.5 6z" />
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z" />
           </svg>
         </button>
       </div>

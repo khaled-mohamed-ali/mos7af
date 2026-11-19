@@ -52,7 +52,8 @@
 
 .player-reciter {
   font-family: 'Amiri', serif;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  font-weight: bold;
   color: #8c6d33;
 }
 
@@ -135,4 +136,54 @@
   border: 2px solid #fcfbfa;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+}
+
+.reciter-select {
+  width: 280px;
+  padding: 14px 42px 14px 16px;
+
+  font-size: 16px;
+  font-weight: 500;
+  font-family: inherit;
+  color: #244b3a;
+
+  background-color: #fcfaf5;
+
+  border: 1.5px solid #c6a45c;
+  border-radius: 14px;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23b08d45' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 18px;
+
+  cursor: pointer;
+
+  box-shadow: 0 2px 6px rgba(160, 125, 55, 0.08);
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+.reciter-select:hover {
+  border-color: #a8863d;
+  background-color: #f8f3e8;
+  box-shadow: 0 3px 10px rgba(160, 125, 55, 0.12);
+}
+
+/* Focus */
+.reciter-select:focus {
+  outline: none;
+  border-color: #b08d45;
+  box-shadow: 0 0 0 4px rgba(192, 160, 91, 0.18);
+}
+
+/* Dropdown options */
+.reciter-select option {
+  background-color: #fcfaf5;
+  color: #244b3a;
+  font-size: 15px;
 }
